@@ -81,6 +81,10 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias e="exit"
+alias c="clear"
+alias ..="cd ../"
+alias ...="cd ../../"
 alias k=kubectl
 
 # Alias definitions.
@@ -91,6 +95,8 @@ alias k=kubectl
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+set -o vi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
