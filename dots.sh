@@ -15,7 +15,7 @@ curl -O https://raw.githubusercontent.com/wmconnolly/cka-dots/master/.vimrc
 mkdir ~/.vim/
 mkdir ~/.vim/colors/
 # be sure to name the file the same as what's specified in your vimrc
-curl -o ~/.vim/colors/vim.nord https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim
+curl -o ~/.vim/colors/nord.vim https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim
 
 
 echo 'alias e="exit"' >>~/.bashrc
