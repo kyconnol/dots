@@ -1,7 +1,7 @@
 #!/bin/bash -i
 
-github_username="$2"/""
-github_repo+="$3"/""
+github_username="${2:-wmconnolly}""/"
+github_repo="${3:-dots}""/"
 github_url="https://raw.githubusercontent.com/"
 master="master/"
 base_url="$github_url$github_username$github_repo$master"
