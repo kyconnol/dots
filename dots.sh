@@ -1,47 +1,81 @@
-#!/bin/bash -i
+#!/bin/bash
 
-github_username="${2:-wmconnolly}""/"
-github_repo="${3:-dots}""/"
-github_url="https://raw.githubusercontent.com/"
-master="master/"
-base_url="$github_url$github_username$github_repo$master"
+# Set script defaults below, otherwise replaced via flags
+domain="https://raw.githubusercontent.com"
+uname="wmconnolly"
+repo="dots"
+brch="master"
 
-# Note: the Vim colorscheme is hardcoded
-while getopts "btv" opt; do
+brc=""
+vrc=""
+tco=""
+
+while getopts "d:k:u:r:btv" opt; do
 	case $opt in
+		d)
+			domain=$OPTARG
+			;;
+		k)
+			brch=$OPTARG
+			;;
+		u)
+			uname=$OPTARG
+			;;
+		r)
+			repo=$OPTARG
+			;;
 		b)
-			curl -o ~/.bashrc $base_url".bashrc"
+			brc="true"
 			;;
 		t)
-			curl -o ~/.tmux.conf $base_url".tmux.conf"
+			tco="true"
 			;;
 		v)
-			curl -o ~/.vimrc $base_url".vimrc"
-			# Create dirs for custom Vim colorscheme
-			mkdir ~/.vim/
-			mkdir ~/.vim/colors/
-			curl -o ~/.vim/colors/nord.vim \
-				https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim
+			vrc="true"
 			;;
 	esac
 done
+shift $((OPTIND -1))
 
-### bashrc should already exist, and likely has specifics we don't want to lose.
-### running the echo commands below to append to bashrc instead!
-### if bashrc doesn't exist, use the `b` flag option
+username="$uname"
+repository="$repo"
+branch="$brch"
+base_url="$domain"/"$username"/"$repository"/"$branch""/"
 
-cp ~/.bashrc ~/.bashrc.orig
+if [[ "$brc" == "true"  ]]; then
+	if [[ -f ~/.bashrc ]] ; then
+		cp ~/.bashrc ~/.bashrc.orig
+		echo 'alias e="exit"' >>~/.bashrc
+		echo 'alias c="clear"' >>~/.bashrc
+		echo 'alias ..="cd ../"' >>~/.bashrc
+		echo 'alias ...="cd ../../"' >>~/.bashrc
+		echo 'set -o vi' >>~/.bashrc
+		echo 'alias k=kubectl' >>~/.bashrc
+		echo 'source <(kubectl completion bash)' >>~/.bashrc
+		echo 'complete -F __start_kubectl k' >>~/.bashrc
+	else
+		curl -o ~/.bashrc $base_url".bashrc"
+	fi
+fi
 
-echo 'alias e="exit"' >>~/.bashrc
-echo 'alias c="clear"' >>~/.bashrc
-echo 'alias ..="cd ../"' >>~/.bashrc
-echo 'alias ...="cd ../../"' >>~/.bashrc
-echo 'set -o vi' >>~/.bashrc
-echo 'alias k=kubectl' >>~/.bashrc
-echo 'source <(kubectl completion bash)' >>~/.bashrc
-echo 'complete -F __start_kubectl k' >>~/.bashrc
+if [[ "$tco" == "true"  ]]; then
+	if [[ -f ~/.tmux.conf ]]; then
+		cp ~/.tmux.conf ~/.tmux.conf.orig
+	fi
+	curl -o ~/.tmux.conf $base_url".tmux.conf"
+fi
 
-# Force reload of bashrc
-exec bash
+if [[ "$vrc" == "true"  ]]; then
+	if [[ -f ~/.vimrc ]]; then
+		cp ~/.vimrc ~/.vimrc.orig
+	fi
+	curl -o ~/.vimrc $base_url".vimrc"
+	# Create dirs for custom Vim colorscheme
+	# Note: colorscheme is hardcoded
+	mkdir ~/.vim/
+	mkdir ~/.vim/colors/
+	curl -o ~/.vim/colors/nord.vim \
+		https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim
+fi
 
-exit
+exit 0
