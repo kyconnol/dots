@@ -43,23 +43,6 @@ repository="$repo"
 branch="$brch"
 base_url="$domain"/"$username"/"$repository"/"$branch""/"
 
-if [[ "$brc" == "true"  ]]; then
-	if [[ -f ~/.bashrc ]] ; then
-		cp ~/.bashrc ~/.bashrc.orig
-		echo 'alias e="exit"' >>~/.bashrc
-		echo 'alias c="clear"' >>~/.bashrc
-		echo 'alias ..="cd ../"' >>~/.bashrc
-		echo 'alias ...="cd ../../"' >>~/.bashrc
-		echo 'set -o vi' >>~/.bashrc
-		echo 'alias k=kubectl' >>~/.bashrc
-		echo 'source <(kubectl completion bash)' >>~/.bashrc
-		echo 'complete -F __start_kubectl k' >>~/.bashrc
-	else
-		curl -o ~/.bashrc $base_url".bashrc"
-	fi
-	# Force reload of bash
-	exec bash
-fi
 
 if [[ "$tco" == "true"  ]]; then
 	mkdir ~/.tmux
@@ -84,4 +67,21 @@ if [[ "$vrc" == "true"  ]]; then
 		https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim
 fi
 
+if [[ "$brc" == "true"  ]]; then
+	if [[ -f ~/.bashrc ]] ; then
+		cp ~/.bashrc ~/.bashrc.orig
+		echo 'alias e="exit"' >>~/.bashrc
+		echo 'alias c="clear"' >>~/.bashrc
+		echo 'alias ..="cd ../"' >>~/.bashrc
+		echo 'alias ...="cd ../../"' >>~/.bashrc
+		echo 'set -o vi' >>~/.bashrc
+		echo 'alias k=kubectl' >>~/.bashrc
+		echo 'source <(kubectl completion bash)' >>~/.bashrc
+		echo 'complete -F __start_kubectl k' >>~/.bashrc
+	else
+		curl -o ~/.bashrc $base_url".bashrc"
+	fi
+	# Force reload of bash
+	exec bash
+fi
 exit 0
