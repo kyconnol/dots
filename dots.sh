@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Set script defaults below, otherwise replaced via flags
 domain="https://raw.githubusercontent.com"
@@ -62,6 +62,9 @@ if [[ "$brc" == "true"  ]]; then
 fi
 
 if [[ "$tco" == "true"  ]]; then
+	mkdir ~/.tmux
+	curl -o ~/.tmux/kube.tmux \
+		https://raw.githubusercontent.com/jonmosco/kube-tmux/master/kube.tmux
 	if [[ -f ~/.tmux.conf ]]; then
 		cp ~/.tmux.conf ~/.tmux.conf.orig
 	fi
