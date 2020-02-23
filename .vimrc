@@ -6,8 +6,9 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " yaml settings
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent nofoldenable
+filetype plugin indent on
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab setl indentkeys-=<:>
 
 set backspace=indent,eol,start
 let mapleader = ","
