@@ -6,6 +6,7 @@ uname="wmconnolly"
 repo="dots"
 brch="master"
 
+# Effective bools to flag which dotfiles to curl
 brc=""
 vrc=""
 tco=""
@@ -56,6 +57,8 @@ if [[ "$brc" == "true"  ]]; then
 	else
 		curl -o ~/.bashrc $base_url".bashrc"
 	fi
+	# Force reload of bash
+	exec bash
 fi
 
 if [[ "$tco" == "true"  ]]; then

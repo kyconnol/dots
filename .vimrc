@@ -1,6 +1,9 @@
 syntax on
 colo nord
 
+set belloff=all
+set encoding=utf-8
+set fileencoding=utf-8
 
 " yaml settings
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
