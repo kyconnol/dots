@@ -1,6 +1,7 @@
 syntax on
 colo nord
 
+set mouse=a
 set belloff=all
 set encoding=utf-8
 set fileencoding=utf-8
