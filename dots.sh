@@ -4,7 +4,7 @@
 domain="https://raw.githubusercontent.com"
 uname="wmconnolly"
 repo="dots"
-brch="master"
+branch="master"
 
 # Effective bools to flag which dotfiles to curl
 brc=""
@@ -38,12 +38,9 @@ while getopts "d:k:u:r:btv" opt; do
 done
 shift $((OPTIND -1))
 
-username="$uname"
-repository="$repo"
-branch="$brch"
-base_url="$domain"/"$username"/"$repository"/"$branch""/"
+base_url="$domain"/"$uname"/"$repo"/"$branch""/"
 
-
+# Curl specified dotfiles
 if [[ "$tco" == "true"  ]]; then
 	mkdir ~/.tmux
 	curl -o ~/.tmux/kube.tmux \
