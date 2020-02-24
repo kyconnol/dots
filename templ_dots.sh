@@ -18,7 +18,7 @@ while getopts "d:k:u:r:btv" opt; do
 			domain=$OPTARG
 			;;
 		k)
-			brch=$OPTARG
+			branch=$OPTARG
 			;;
 		u)
 			uname=$OPTARG

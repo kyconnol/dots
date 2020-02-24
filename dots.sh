@@ -17,7 +17,7 @@ while getopts "d:k:u:r:btv" opt; do
 			domain=$OPTARG
 			;;
 		k)
-			brch=$OPTARG
+			branch=$OPTARG
 			;;
 		u)
 			uname=$OPTARG
@@ -65,6 +65,12 @@ if [[ "$vrc" == "true"  ]]; then
 fi
 
 if [[ "$brc" == "true"  ]]; then
+	# Binary for tldr
+	mkdir -p ~/bin
+	curl -o ~/bin/tldr \
+		https://raw.githubusercontent.com/raylee/tldr/master/tldr
+	chmod +x ~/bin/tldr
+	# Deal with .bashrc, whether it exists
 	if [[ -f ~/.bashrc ]] ; then
 		cp ~/.bashrc ~/.bashrc.orig
 		echo 'alias e="exit"' >>~/.bashrc
@@ -75,6 +81,7 @@ if [[ "$brc" == "true"  ]]; then
 		echo 'alias k=kubectl' >>~/.bashrc
 		echo 'source <(kubectl completion bash)' >>~/.bashrc
 		echo 'complete -F __start_kubectl k' >>~/.bashrc
+		echo 'export $PATH=$PATH:~/bin' >>~/.bashrc
 	else
 		curl -o ~/.bashrc $base_url".bashrc"
 	fi
