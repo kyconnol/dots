@@ -81,7 +81,7 @@ if [[ "$brc" == "true"  ]]; then
 		echo 'alias k=kubectl' >>~/.bashrc
 		echo 'source <(kubectl completion bash)' >>~/.bashrc
 		echo 'complete -F __start_kubectl k' >>~/.bashrc
-		echo 'export $PATH=$PATH:~/bin' >>~/.bashrc
+		echo 'export PATH=$PATH:~/bin' >>~/.bashrc
 	else
 		curl -o ~/.bashrc $base_url".bashrc"
 	fi

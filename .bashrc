@@ -106,8 +106,8 @@ set -o vi
 #fi
 export PS1="$ "
 export DISPLAY=:1
-alias code="code --user-data-dir=/root/.vscode"
 export PS1="\[\e]0;\u@\h: \w\]\H $ "
+export PATH=$PATH:~/
 
 # kubectl completion settings
 source <(kubectl completion bash)
