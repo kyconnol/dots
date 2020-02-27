@@ -11,8 +11,14 @@ brc=""
 vrc=""
 tco=""
 
-while getopts "d:k:u:r:btv" opt; do
+while getopts "d:k:u:r:Abtv" opt; do
 	case $opt in
+		A)
+			echo "Curling bashrc, vimrc, & tmux.conf dotfiles :)"
+			brc="true"
+			tco="true"
+			vrc="true"
+			;;
 		d)
 			domain=$OPTARG
 			;;
