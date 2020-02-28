@@ -8,14 +8,16 @@ branch="master"
 
 # Effective bools to flag which dotfiles to curl
 brc=""
+pro=""
 vrc=""
 tco=""
 
-while getopts "d:k:u:r:Abtv" opt; do
+while getopts "d:k:u:r:Abptv" opt; do
 	case $opt in
 		A)
 			echo "Curling bashrc, vimrc, & tmux.conf dotfiles :)"
 			brc="true"
+			pro="true"
 			tco="true"
 			vrc="true"
 			;;
@@ -33,6 +35,9 @@ while getopts "d:k:u:r:Abtv" opt; do
 			;;
 		b)
 			brc="true"
+			;;
+		p)
+			pro="true"
 			;;
 		t)
 			tco="true"
@@ -68,6 +73,10 @@ if [[ "$vrc" == "true"  ]]; then
 	mkdir ~/.vim/colors/
 	curl -o ~/.vim/colors/nord.vim \
 		https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim
+fi
+
+if [[ "$pro" == "true" ]]; then
+	curl -o ~/ $base_url".profile"
 fi
 
 if [[ "$brc" == "true"  ]]; then
