@@ -76,7 +76,7 @@ if [[ "$vrc" == "true"  ]]; then
 fi
 
 if [[ "$pro" == "true" ]]; then
-	curl -o ~/ $base_url".profile"
+	curl -o ~/.profile $base_url".profile"
 fi
 
 if [[ "$brc" == "true"  ]]; then
@@ -100,7 +100,8 @@ if [[ "$brc" == "true"  ]]; then
 	else
 		curl -o ~/.bashrc $base_url".bashrc"
 	fi
-	# Force reload of bash
+	# Force reload of bash / source .profile
 	exec bash
+	source ~/.profile
 fi
 exit 0

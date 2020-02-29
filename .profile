@@ -1,13 +1,16 @@
-make-pod () {
-	kubectl run $1 --generator=run-pod/v1 --image=${$2:=nginx} --dry-run -oyaml > ${$3:=pod-file}.yaml
+pod-make () {
+	image=$2
+	file=$3
+	kubectl run $1 --generator=run-pod/v1 --image=${image:="nginx"} --dry-run -oyaml > ${file:="pod-file"}.yaml
 }
 
 
-watch-pods () {
-	kubectl get pods -owide --watch
+pod-watch () {
+	all = $1
+	kubectl get pods ${all:+"-A"} -owide --watch
 }
 
 # EXPORT ALL FUNCS
-export -f make-pod
-export -f watch-pods
+export -f pod-make
+export -f pod-watch
 
