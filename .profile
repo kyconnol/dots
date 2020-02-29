@@ -1,3 +1,7 @@
+pod-yaml () {
+	kubectl get pod $1 -oyaml
+}
+
 pod-make () {
 	image=$2
 	file=$3
@@ -11,6 +15,7 @@ pod-watch () {
 }
 
 # EXPORT ALL FUNCS
+export -f pod-yaml
 export -f pod-make
 export -f pod-watch
 
