@@ -14,6 +14,12 @@ pod-watch () {
 	kubectl get pods ${all:+"-A"} -owide --watch
 }
 
+dep-make () {
+	image=$2
+	file=$3
+	kubectl create deployment $1 --image=${image:="nginx"} --dry-run -oyaml > ${file:="dep-file"}.yaml
+}
+
 # EXPORT ALL FUNCS
 export -f pod-yaml
 export -f pod-make
