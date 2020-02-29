@@ -10,7 +10,7 @@ pod-make () {
 
 
 pod-watch () {
-	all = $1
+	all=$1
 	kubectl get pods ${all:+"-A"} -owide --watch
 }
 
