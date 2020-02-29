@@ -76,7 +76,13 @@ if [[ "$vrc" == "true"  ]]; then
 fi
 
 if [[ "$pro" == "true" ]]; then
-	curl -o ~/.profile $base_url".profile"
+	if [[ -f ~/.profile ]]; then
+		cp ~/.profile ~/.profile.orig
+		curl -o ~/.helpers $base_url".profile"
+		echo ~/.helpers >> ~/.profile
+	else
+		curl -o ~/.profile $base_url".profile"
+	fi
 fi
 
 if [[ "$brc" == "true"  ]]; then

@@ -5,7 +5,7 @@ pod-yaml () {
 pod-make () {
 	image=$2
 	file=$3
-	kubectl run $1 --generator=run-pod/v1 --image=${image:="nginx"} --dry-run -oyaml > ${file:="pod-file"}.yaml
+	kubectl run $1 --generator=run-pod/v1 --image=${image:="nginx"} --dry-run --restart=Never -oyaml > ${file:="pod-file"}.yaml
 }
 
 
@@ -24,4 +24,4 @@ dep-make () {
 export -f pod-yaml
 export -f pod-make
 export -f pod-watch
-
+export -f dep-make
