@@ -79,7 +79,8 @@ if [[ "$pro" == "true" ]]; then
 	if [[ -f ~/.profile ]]; then
 		cp ~/.profile ~/.profile.orig
 		curl -o ~/.helpers $base_url".profile"
-		echo ~/.helpers >> ~/.profile
+		chmod +x ~/.helpers
+		cat ~/.helpers >>~/.profile
 	else
 		curl -o ~/.profile $base_url".profile"
 	fi
