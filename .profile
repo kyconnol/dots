@@ -14,6 +14,14 @@ pod-watch () {
 	kubectl get pods ${all:+"-A"} -owide --watch
 }
 
+pod-bbox () {
+	kubectl run -it --rm debug --image=busybox --restart-Never --sh
+}
+
+pod-events () {
+	kubectl describe pod $1 | grep -i events -A 11
+}
+
 dep-make () {
 	image=$2
 	file=$3
@@ -24,4 +32,6 @@ dep-make () {
 export -f pod-yaml
 export -f pod-make
 export -f pod-watch
+export -f pod-bbox
+export -f pod-events
 export -f dep-make
