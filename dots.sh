@@ -92,6 +92,10 @@ if [[ "$brc" == "true"  ]]; then
 	curl -o ~/bin/tldr \
 		https://raw.githubusercontent.com/raylee/tldr/master/tldr
 	chmod +x ~/bin/tldr
+	# Binary for bat
+	curl -o ~/bin/bat \
+		https://raw.githubusercontent.com/wmconnolly/dots/master/bat
+	chmod +x ~/bin/bat
 	# Deal with .bashrc, whether it exists
 	if [[ -f ~/.bashrc ]] ; then
 		cp ~/.bashrc ~/.bashrc.orig
