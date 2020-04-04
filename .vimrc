@@ -20,9 +20,10 @@ filetype plugin indent on
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=<:>
 
 
-" Functions to deal with whitespace
+" Leader calls && Functions to deal with whitespace
 nnoremap <leader>ss <c-r>ShowSpaces()<CR>
 nnoremap <leader>ts <c-r>TrimSpaces()<CR>
+nnoremap <leader>a :cclose<CR>
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
