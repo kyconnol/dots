@@ -73,6 +73,9 @@ if [[ "$vrc" == "true"  ]]; then
 	mkdir ~/.vim/colors/
 	curl -o ~/.vim/colors/nord.vim \
 		https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim
+	mkdir ~/.vim/plugin/
+	curl -O ~/.vim/plugin/https://raw.githubusercontent.com/ajh17/VimCompletesMe/master/plugin/VimCompletesMe.vim
+	curl -O ~/.vim/autoload/https://raw.githubusercontent.com/ajh17/VimCompletesMe/master/autoload/VimCompletesMe.vim
 fi
 
 if [[ "$pro" == "true" ]]; then
