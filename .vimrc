@@ -24,6 +24,8 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=<:>
 nnoremap <leader>ss <c-r>ShowSpaces()<CR>
 nnoremap <leader>ts <c-r>TrimSpaces()<CR>
 nnoremap <leader>a :cclose<CR>
+nnoremap <Space> za
+vnoremap <Space> za
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
