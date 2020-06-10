@@ -12,7 +12,7 @@ let mapleader = ","
 set omnifunc=sytaxcomplete#Complete
 set completeopt=longest,menuone
 
-b:vcm_tab_complete = "omni"
+let b:vcm_tab_complete = "omni"
 
 " yaml settings
 au! BufNewFile,BufReadPost *.{yaml,yml} setlocal filetype=yaml foldmethod=indent nofoldenable
