@@ -5,7 +5,7 @@ pod-yaml () {
 pod-make () {
 	image=$2
 	file=$3
-	kubectl run $1 --generator=run-pod/v1 --image=${image:="nginx"} --dry-run --restart=Never -oyaml > ${file:="pod-file"}.yaml
+	kubectl run $1 --image=${image:="nginx"} --dry-run=client -oyaml > ${file:="pod-file"}.yaml
 }
 
 
@@ -15,7 +15,7 @@ pod-watch () {
 }
 
 pod-bbox () {
-	kubectl run -it --rm debug --image=busybox --restart-Never --sh
+	kubectl run -it --rm debug --image=busybox --restart=Never --sh
 }
 
 pod-events () {
@@ -25,7 +25,7 @@ pod-events () {
 dep-make () {
 	image=$2
 	file=$3
-	kubectl create deployment $1 --image=${image:="nginx"} --dry-run -oyaml > ${file:="dep-file"}.yaml
+	kubectl create deployment $1 --image=${image:="nginx"} --dry-run=client -oyaml > ${file:="dep-file"}.yaml
 }
 
 # EXPORT ALL FUNCS

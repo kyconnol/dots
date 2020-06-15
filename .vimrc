@@ -17,7 +17,8 @@ let b:vcm_tab_complete = "omni"
 " yaml settings
 au! BufNewFile,BufReadPost *.{yaml,yml} setlocal filetype=yaml foldmethod=indent nofoldenable
 filetype plugin indent on
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=<:>
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+
 
 
 " Leader calls && Functions to deal with whitespace
@@ -28,7 +29,7 @@ nnoremap <Space> za
 vnoremap <Space> za
 
 function ShowSpaces(...)
-  let @/='\v(\s+$)|( +\ze\t)'
+  let @/=',v(\s+$)|( +\ze\t)'
   let oldhlsearch=&hlsearch
   if !a:0
     let &hlsearch=!&hlsearch
